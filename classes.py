@@ -36,7 +36,7 @@ class Conta:
                 self.saldo -= valor
                 self.limite -= valor
                 print(f'{cor[2]}{leia_din(valor)} sacados com Sucesso!{cor[0]}')
-                print(f'{cor[2]}Saldo atual: {leia_din(self.saldo)}{cor[0]}') #TODO Transformar em função
+                print(f'{cor[2]}Saldo atual: {leia_din(self.saldo)}{cor[0]}')
                 print(f'{cor[5]}Limite de saque: {leia_din(self.limite)}{cor[0]}')
 
                 update_file(fileName, bancos)
