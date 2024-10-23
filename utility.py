@@ -68,3 +68,11 @@ def listar_b(lista):
 def erro(txt):
     print(f'{cor[1]}{txt}{cor[0]}')
 
+def listar_c(banco):
+    for p, c in enumerate(banco.clientes):
+        print(f'{cor[3]}[ {p + 1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
+    while True:
+        sel = leia_int('Selecione um cliente: ')
+        if sel <= len(banco.clientes):
+            return sel
+

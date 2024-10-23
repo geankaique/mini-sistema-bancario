@@ -13,8 +13,6 @@ check_file(fileName)
 read_file(fileName, bancos)
 
 
-
-# #TODO criar dados persistente
 opcao = ['Listar Bancos', 'Sair do Programa']
 opcao2 = ['Criar Cliente', 'Listar Clientes','Sacar', 'Depositar', 'Saldo','Voltar']
 
@@ -58,9 +56,7 @@ while True:
             if opc == 3: # SACA DINHEIRO
                 msg(f'Sacar [Caixa 24 Horas] {banco.nome}')
 
-                for p, c in enumerate(banco.clientes):
-                    print(f'{cor[3]}[ {p+1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
-                sel = leia_int('Selecione um cliente: ')
+                sel = listar_c(banco)
                 cliente = banco.clientes[sel-1]
                 print(f'{cor[5]}Saldos:{cor[0]}')
                 print(f'{cor[4]}Conta corrente:{cor[2]} {leia_din(cliente.conta_c.saldo)}{cor[0]}')
@@ -79,9 +75,7 @@ while True:
             if opc == 4: # DEPOSITA
                 msg(f'Depositos Banco {banco.nome}')
 
-                for p, c in enumerate(banco.clientes):
-                    print(f'{cor[3]}[ {p + 1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
-                sel = leia_int('Selecione um cliente: ')
+                sel = listar_c(banco)
                 cliente = banco.clientes[sel - 1]
                 print(f'{cor[3]}[ 1 ]{cor[0]} - {cor[4]}Conta corrente{cor[0]}')
                 print(f'{cor[3]}[ 2 ]{cor[0]} - {cor[4]}Conta poupança{cor[0]}')
@@ -98,10 +92,9 @@ while True:
                 update_file(fileName, bancos)
 
             if opc == 5: # SALDO
-                for p, c in enumerate(banco.clientes):
-                    print(f'{cor[3]}[ {p + 1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
-                sel = leia_int('Selecione um cliente: ')
-                cliente = banco.clientes[sel - 1] # todo Corrijir passar numero maior do que a lista de clientes.
+                sel = listar_c(banco)
+                cliente = banco.clientes[sel - 1]
+
                 print(f'{cor[5]}Saldos:{cor[0]}')
                 print(f'{cor[4]}Conta corrente:{cor[2]} {leia_din(cliente.conta_c.saldo)}{cor[0]}')
                 print(f'{cor[4]}Conta poupança:{cor[2]} {leia_din(cliente.conta_p.saldo)}{cor[0]}')

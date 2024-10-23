@@ -86,42 +86,5 @@ class Banco:
         return True
 
 
-#todo PRIVAR atributo SALDO, Deposito, saque
-#DEBUG
-
-# bradesco = Banco('o')
-# nubank = Banco('b')
-# cliente2 = nubank.adc('Maria Chaplin', 20)
-# cliente2.conta_c.depositar(200000)
-# print(f'Conta corrente: {cliente2.conta_c.saldo}')
-# print(f'Conta poupança: {cliente2.conta_p.saldo}')
-# cliente2.conta_p.sacar(40, bradesco, cliente2)
-# cliente2.conta_p.depositar()
-
-# bk = Banco('bk')
-# c5 = bk.adc('Marretada', 24)
-# interBank = Banco('InterBank')
-# cliente3 = interBank.adc('ASD', 23)
-#
-#
-#
-# cliente3.conta_c.conta = 1
-# bk.contas[0] = 2
-# bk.contas[1] = c5.conta_p.conta
-#
-# print(bk.contas)
-# print(c5.conta_p.conta)
-# print(c5.conta_c.conta)
-# bk.agencias = 99999
-#
-# c5.conta_p.sacar(20, bk, c5)
-
-
-
-
-
-
-# cliente1 = bradesco.adc('Pedro Guimarães', 30)
-# cliente1.conta_c.sacar(50, bradesco, cliente1)
 
 
