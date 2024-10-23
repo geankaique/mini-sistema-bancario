@@ -4,7 +4,7 @@ Este projeto simula um mini sistema bancário com diversas funcionalidades e per
 Objetivo: Projeto desenvolvido para fins educacionais, explorando conceitos de programação orientada a objetos e manipulação de arquivos em Python.
 
 # Amostra
-![Foto do sistema](https://imgur.com/a/sistema-bancario-em-python-lRLX3T1)
+![sample](https://github.com/user-attachments/assets/1dd78697-73fe-4c8e-b048-d4d4383596c6)
 
 # Recursos
 
