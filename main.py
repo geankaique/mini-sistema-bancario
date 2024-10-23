@@ -1,18 +1,27 @@
 from classes import *
+from files import read_file
 from utility import *
 from time import sleep
-
-
 
 bradesco = Banco('bradesco')
 nubank = Banco('nubank')
 bancos = [bradesco, nubank]
+nubank.agencias = 7845
+bradesco.agencias = 2268
 
-cliente2 = nubank.adc('Maria Chaplin Nubanko', 20)
-cliente3 = bradesco.adc('Julio Mdeira Bradeco', 40)
+read_file(fileName, bancos)
 
-#TODO criar dados persistente
+# cliente2 = nubank.adc('Maria M', 20)
+# cliente3 = bradesco.adc('Julio B', 40)
+# cliente = nubank.adc('Julio B', 40) # BANCO, FICA RESPONSÁVEL POR PASSAR A AGÊNCIA.
+# cliente.conta_p.conta = 56177189
+# cliente.conta_p.saldo = 100
+# cliente.conta_c.conta = 35108463
+# cliente.conta_c.saldo = 12000
 
+
+# #TODO criar dados persistente
+#
 opcao = ['Listar Bancos', 'Sair do Programa']
 opcao2 = ['Criar Cliente', 'Listar Clientes','Sacar', 'Depositar', 'Saldo','Voltar']
 
@@ -40,6 +49,7 @@ while True:
 
                 dados = vef_cliente()
                 banco.adc(dados[0], dados[1])
+
 
             if opc == 2: # LISTA CLIENTES
                 msg(f'Clientes {banco.nome}')
@@ -91,7 +101,7 @@ while True:
                 for p, c in enumerate(banco.clientes):
                     print(f'{cor[3]}[ {p + 1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
                 sel = leia_int('Selecione um cliente: ')
-                cliente = banco.clientes[sel - 1]
+                cliente = banco.clientes[sel - 1] # todo Corrijir passar numero maior do que a lista de clientes.
                 print(f'{cor[5]}Saldos:{cor[0]}')
                 print(f'{cor[4]}Conta corrente:{cor[2]} {leia_din(cliente.conta_c.saldo)}{cor[0]}')
                 print(f'{cor[4]}Conta poupança:{cor[2]} {leia_din(cliente.conta_p.saldo)}{cor[0]}')

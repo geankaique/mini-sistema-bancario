@@ -1,6 +1,7 @@
 from random import randint
-from utility import leia_din, erro
-from utility import cor
+from utility import leia_din, erro, cor
+from files import write_file, check_file
+
 
 
 class Pessoa:
@@ -17,9 +18,9 @@ class Cliente(Pessoa):
 
 class Conta:
     def __init__(self, agencia):
-        self.conta = randint(00000000,99999999)
-        self.agencia = agencia
-        self.saldo = 100
+        self.conta = randint(00000000,99999999) # ÚNICO
+        self.agencia = agencia # ÚNICO, MAS JA FOI PASSADO!
+        self.saldo = 100 # ÚNICO
         self.limite = 15000
 
     def depositar(self, valor):
@@ -68,6 +69,8 @@ class Banco:
         self.contas.append(cliente.conta_c.conta)
         self.contas.append(cliente.conta_p.conta)
 
+
+
         print(f'{cor[2]}Cliente {cliente.name} adicionado com Sucesso!{cor[0]}')
         return cliente
 
@@ -83,6 +86,11 @@ class Banco:
             return False
 
         return True
+
+
+
+fileName = 'files/clients.csv'
+check_file(fileName)
 
 
 #todo PRIVAR atributo SALDO, Deposito, saque
