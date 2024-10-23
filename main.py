@@ -9,6 +9,7 @@ bancos = [bradesco, nubank]
 nubank.agencias = 7845
 bradesco.agencias = 2268
 
+check_file(fileName)
 read_file(fileName, bancos)
 
 
@@ -41,6 +42,7 @@ while True:
 
                 dados = vef_cliente()
                 temp = banco.adc(dados[0], dados[1])
+                print(f'{cor[2]}Cliente {temp.name} adicionado com Sucesso!{cor[0]}')
                 write_file(fileName, temp, banco.nome)
 
                 banco.clientes.append(temp)
@@ -69,10 +71,10 @@ while True:
                 sel = leia_int('Selecionar conta: ')
                 if sel == 1:
                     valor = leia_float('Digite o valor R$: ')
-                    cliente.conta_c.sacar(valor, banco, cliente)
+                    cliente.conta_c.sacar(valor, banco, cliente, bancos)
                 if sel == 2:
                     valor = leia_float('Digite o valor R$: ')
-                    cliente.conta_p.sacar(valor, banco, cliente)
+                    cliente.conta_p.sacar(valor, banco, cliente, bancos)
 
             if opc == 4: # DEPOSITA
                 msg(f'Depositos Banco {banco.nome}')
@@ -92,6 +94,8 @@ while True:
                     msg('Conta Poupança')
                     valor = leia_float('Digite o valor R$: ')
                     cliente.conta_p.depositar(valor)
+
+                update_file(fileName, bancos)
 
             if opc == 5: # SALDO
                 for p, c in enumerate(banco.clientes):

@@ -3,6 +3,8 @@ from utility import leia_din, erro, cor
 from files import check_file, update_file
 
 
+fileName = 'files/clients.csv'
+check_file(fileName)
 
 class Pessoa:
     def __init__(self, name, age):
@@ -28,7 +30,7 @@ class Conta:
         print(f'{cor[2]}{leia_din(valor)} depositados com sucesso!{cor[0]}')
         print(f'{cor[5]}Novo saldo: {leia_din(self.saldo)}{cor[0]}')
 
-    def sacar(self, valor, banco, cliente):
+    def sacar(self, valor, banco, cliente, bancos):
         if banco.autenticar(cliente, self.conta):
             if valor <= self.limite and valor <= self.saldo:
                 self.saldo -= valor
@@ -36,6 +38,9 @@ class Conta:
                 print(f'{cor[2]}{leia_din(valor)} sacados com Sucesso!{cor[0]}')
                 print(f'{cor[2]}Saldo atual: {leia_din(self.saldo)}{cor[0]}') #TODO Transformar em função
                 print(f'{cor[5]}Limite de saque: {leia_din(self.limite)}{cor[0]}')
+
+                update_file(fileName, bancos)
+
             else:
                 print(f'{cor[1]}Erro ao Validar a operação, Verifique seu saldo e limite diário{cor[0]}')
                 print(f'{cor[2]}Saldo atual: {leia_din(self.saldo)}{cor[0]}')
@@ -65,8 +70,6 @@ class Banco:
 
     def adc(self, name, age):
         cliente = Cliente(name, age, self.agencias)
-
-        print(f'{cor[2]}Cliente {cliente.name} adicionado com Sucesso!{cor[0]}')
         return cliente
 
     def autenticar(self, client, conta):
@@ -81,11 +84,6 @@ class Banco:
             return False
 
         return True
-
-
-
-fileName = 'files/clients.csv'
-check_file(fileName)
 
 
 #todo PRIVAR atributo SALDO, Deposito, saque

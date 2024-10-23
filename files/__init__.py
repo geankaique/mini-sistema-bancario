@@ -6,7 +6,7 @@ def check_file(file_name):
     if not os.path.exists(file_name):
         with open(file_name, 'wt') as file:
             file.write(f'nome,idade,agencia,conta_p,saldo_p,conta_c,saldo_c,banco\n')
-        print('Arquivo não encontrado, criando...')
+        print('Criando DB...')
 
 def write_file(file_name, cliente, b_nome): # RECEBE UM OBJETO
     with open(file_name, 'at', encoding='utf-8') as file:
@@ -34,15 +34,14 @@ def read_file(file_name, bancos):
                     bank.clientes.append(client)
                     bank.contas.append(client.conta_c.conta)
                     bank.contas.append(client.conta_p.conta)
-
+    print('DB iniciado com sucesso!')
 
 def update_file(file_name, bancos):
     with open(file_name, 'wt', encoding='utf-8') as file:
-        file.write(f'nome,idade,agencia,conta_p,saldo_p,conta_c,saldo_c,banco\n')
+        file.write(f'nome,idade,agencia,conta_p,saldo_p,conta_c,saldo_c,banco\n')  # DICT_KEYS
         writer = csv.writer(file, lineterminator='\n')
-        for banco in bancos:
+        for banco in bancos: # SELECIONA BANCO
             for cliente in banco.clientes:
-                print(cliente.name)
                 writer.writerow(
                     [cliente.name, cliente.age, cliente.conta_p.agencia, cliente.conta_p.conta, cliente.conta_p.saldo,
                      cliente.conta_c.conta, cliente.conta_c.saldo,banco.nome])
