@@ -12,7 +12,7 @@ def write_file(file_name, cliente, b_nome): # RECEBE UM OBJETO
     with open(file_name, 'at', encoding='utf-8') as file:
         writer = csv.writer(file, lineterminator='\n')
         writer.writerow([cliente.name, cliente.age, cliente.conta_p.agencia, cliente.conta_p.conta, cliente.conta_p.saldo , cliente.conta_c.conta, cliente.conta_c.saldo,
-                         b_nome,])
+                         b_nome])
 
 
 
@@ -25,11 +25,25 @@ def read_file(file_name, bancos):
                 if cliente['banco'].lower() == banco.nome.lower():
                     bank = banco
 
-            client = bank.adc(cliente['nome'],cliente['idade'])  # BANCO, FICA RESPONSÁVEL POR PASSAR A AGÊNCIA.
-            client.conta_p.conta = cliente['conta_p']
-            client.conta_p.saldo = cliente['saldo_p']
-            client.conta_c.conta = cliente['conta_c']
-            client.conta_c.saldo = cliente['saldo_c']
+                    client = bank.adc(cliente['nome'],int(cliente['idade']))  # BANCO, FICA RESPONSÁVEL POR PASSAR A AGÊNCIA.
+                    client.conta_p.conta = int(cliente['conta_p'])
+                    client.conta_p.saldo = float(cliente['saldo_p'])
+                    client.conta_c.conta = int(cliente['conta_c'])
+                    client.conta_c.saldo = float(cliente['saldo_c'])
+
+                    bank.clientes.append(client)
+                    bank.contas.append(client.conta_c.conta)
+                    bank.contas.append(client.conta_p.conta)
 
 
+def update_file(file_name, bancos):
+    with open(file_name, 'wt', encoding='utf-8') as file:
+        file.write(f'nome,idade,agencia,conta_p,saldo_p,conta_c,saldo_c,banco\n')
+        writer = csv.writer(file, lineterminator='\n')
+        for banco in bancos:
+            for cliente in banco.clientes:
+                print(cliente.name)
+                writer.writerow(
+                    [cliente.name, cliente.age, cliente.conta_p.agencia, cliente.conta_p.conta, cliente.conta_p.saldo,
+                     cliente.conta_c.conta, cliente.conta_c.saldo,banco.nome])
 
