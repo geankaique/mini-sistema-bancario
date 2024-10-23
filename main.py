@@ -1,5 +1,5 @@
 from classes import *
-from files import read_file
+from files import read_file,write_file, update_file
 from utility import *
 from time import sleep
 
@@ -11,17 +11,9 @@ bradesco.agencias = 2268
 
 read_file(fileName, bancos)
 
-# cliente2 = nubank.adc('Maria M', 20)
-# cliente3 = bradesco.adc('Julio B', 40)
-# cliente = nubank.adc('Julio B', 40) # BANCO, FICA RESPONSÁVEL POR PASSAR A AGÊNCIA.
-# cliente.conta_p.conta = 56177189
-# cliente.conta_p.saldo = 100
-# cliente.conta_c.conta = 35108463
-# cliente.conta_c.saldo = 12000
 
 
 # #TODO criar dados persistente
-#
 opcao = ['Listar Bancos', 'Sair do Programa']
 opcao2 = ['Criar Cliente', 'Listar Clientes','Sacar', 'Depositar', 'Saldo','Voltar']
 
@@ -48,8 +40,12 @@ while True:
                 msg('Criando cliente')
 
                 dados = vef_cliente()
-                banco.adc(dados[0], dados[1])
+                temp = banco.adc(dados[0], dados[1])
+                write_file(fileName, temp, banco.nome)
 
+                banco.clientes.append(temp)
+                banco.contas.append(temp.conta_c.conta)
+                banco.contas.append(temp.conta_p.conta)
 
             if opc == 2: # LISTA CLIENTES
                 msg(f'Clientes {banco.nome}')
@@ -97,7 +93,7 @@ while True:
                     valor = leia_float('Digite o valor R$: ')
                     cliente.conta_p.depositar(valor)
 
-            if opc == 5:
+            if opc == 5: # SALDO
                 for p, c in enumerate(banco.clientes):
                     print(f'{cor[3]}[ {p + 1} ]{cor[0]} - {cor[4]}{c.name}{cor[0]}')
                 sel = leia_int('Selecione um cliente: ')
@@ -116,13 +112,3 @@ while True:
         print(f'{cor[2]}Finalizando Programa...{cor[0]}')
         sleep(2)
         break
-
-# bradesco = Banco()
-# nubank = Banco()
-# cliente2 = nubank.adc('Maria Chaplin', 20)
-# cliente2.conta_p.sacar(40, bradesco, cliente2)
-#
-#
-# cliente1 = bradesco.adc('Pedro Guimarães', 30)
-# cliente1.conta_c.sacar(50, bradesco, cliente1)
-

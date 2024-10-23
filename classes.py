@@ -1,6 +1,6 @@
 from random import randint
 from utility import leia_din, erro, cor
-from files import write_file, check_file
+from files import check_file, update_file
 
 
 
@@ -65,11 +65,6 @@ class Banco:
 
     def adc(self, name, age):
         cliente = Cliente(name, age, self.agencias)
-        self.clientes.append(cliente)
-        self.contas.append(cliente.conta_c.conta)
-        self.contas.append(cliente.conta_p.conta)
-
-
 
         print(f'{cor[2]}Cliente {cliente.name} adicionado com Sucesso!{cor[0]}')
         return cliente
