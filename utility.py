@@ -39,7 +39,7 @@ def leia_float(txt):
             return n
 
 def leia_din(n):
-    return f'R${n:.2f}'.replace('.', ',')
+    return f'R${float(n):.2f}'.replace('.', ',')
 
 def vef_cliente():
     while True:
